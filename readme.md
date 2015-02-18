@@ -124,16 +124,92 @@ orders.create(attributes = {})
 orders.create!(attributes = {})
 ```
 
-### has_many :through
-
 ### has_and_belongs_to_many
 
 - The `has_and_belongs_to_many` association creates a many-to-many relationship with another model. 
 - This associates two classes via an intermediate join table that includes foreign keys referring to each of the classes.
+- You get the same 16 methods for the association as we saw with `has_many`
+- Here's how you'd set it up
+
+```ruby 
+# Models
+class Group < ActiveRecord::Base
+  has_and_belongs_to_many :users
+end
+ 
+class User < ActiveRecord::Base
+  has_and_belongs_to_many :groups
+end
+```
+
+```ruby
+# Migration
+class CreateGroupsAndUsers < ActiveRecord::Migration
+  def change
+    create_table :groups do |t|
+      t.string :name
+      t.timestamps null: false
+    end
+ 
+    create_table :users do |t|
+      t.string :name
+      t.timestamps null: false
+    end
+ 
+    create_table :groups_users, id: false do |t|
+      t.belongs_to :group, index: true
+      t.belongs_to :user, index: true
+    end
+  end
+end
+```
+
+### has_many :through
+```ruby 
+# Models
+class Group < ActiveRecord::Base
+  has_many :users, :through => :membership
+end
+ 
+class User < ActiveRecord::Base
+  has_many :groups, :through => :membership
+end
+
+class Membership < ActiveRecord::Base
+  belongs_to :user
+  belongs_to :group
+  
+  # has more attributes, like date joined and role
+end
+```
+
+```ruby
+# Migration
+class CreateGroupsMembershipsAndUsers < ActiveRecord::Migration
+  def change
+    create_table :groups do |t|
+      t.string :name
+      t.timestamps null: false
+    end
+ 
+    create_table :memberships do |t|
+      t.string :role
+      t.belongs_to :group, index: true
+      t.belongs_to :user, index: true
+    end
+ 
+    create_table :users do |t|
+      t.string :name
+      t.timestamps null: false
+    end
+  end
+end
+```
 
 
 ### Choosing between many-to-many relationships (habtm vs. has_may :through)
 - The rule of thumb is that if you need the join table to be an independent entity, use `has_many :through`
+- That means, if you need additional attributes on the join model, you must use `has_many :through`
 - This affords you validations, callbacks, and attributes on the join model
 - It also affords you some good, thoughtful naming on the join table
 - You will almost always end up needing a first-order model, so we recommend going with `has_many :through` unless you have a reason not to
