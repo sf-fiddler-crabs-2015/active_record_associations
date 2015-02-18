@@ -7,7 +7,7 @@
 - The belongs_to association is always used in the model that has the foreign key.
 
 ### Why associations?
-- Think about the code you'd need to write every time you made an app that talks to a DB. 
+- Think about the code you'd need to write every time you made an app that talks to a relational DB. 
 - There's a lot of repetition there. Not dry.
 - If you'd done a lot of projects, you'd probably have your own code that you shared across projects.
 - As a programmer you should always be on the look out for optimizing workflows.
