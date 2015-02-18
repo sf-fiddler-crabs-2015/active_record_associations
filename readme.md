@@ -26,22 +26,27 @@ end
 ```ruby
 # returns the associated object, if any. If no associated object is found, it returns nil.
 @customer = @order.customer
-
+```
+```ruby
 # assigns an associated object to this object. 
 # Behind the scenes, this means extracting the primary key from the associate object and setting this object's foreign key to the same value.
 @order.customer = @customer
-
+```
+```ruby
 # The build_association method returns a new object of the associated type.
 # The link through this object's foreign key will be set, but the associated object will not yet be saved.
 @customer = @order.build_customer(customer_number: 123,
                                   customer_name: "JohnJoe Jones")
-
+```
+```ruby
 # The create_association method returns a new object of the associated type. 
 # The link through this object's foreign key will be set
 # Once it passes all of the validations specified on the associated model, the associated object will be saved.
 @customer = @order.create_customer(customer_number: 123,
                                    customer_name: "JohnJoe Jones")
                                    
+```
+```ruby
 # Same as create_association above, but Raises ActiveRecord::RecordInvalid if the record is invalid.
 create_customer!
 ```
