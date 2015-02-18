@@ -1,6 +1,6 @@
 # Active Record Associations
 
-### What are assocations?
+### What are associations?
 
 - Active Record associations can be used to describe one-to-one, one-to-many and many-to-many relationships between models. 
 - Each model uses an association to describe its role in the relation. 
@@ -216,5 +216,5 @@ end
 
 ### Resources
 
-- [Rails Guide to Association Basics](Rails Guide to AR associations http://guides.rubyonrails.org/association_basics.html)
+- [Rails Guide to Association Basics](http://guides.rubyonrails.org/association_basics.html)
 - [Active Record API](http://api.rubyonrails.org/classes/ActiveRecord/Associations/ClassMethods.html)
