@@ -247,4 +247,4 @@ end
 - [Active Record API](http://api.rubyonrails.org/classes/ActiveRecord/Associations/ClassMethods.html)
 - [Active Record Migrations (has some Rails specific stuff)](http://guides.rubyonrails.org/active_record_migrations.html)
 - [More on Active Record queries and the ActiveRecord::Relation object](http://www.theodinproject.com/ruby-on-rails/active-record-queries)
-- [More on Indexing]()
+- [What is Database Indexing](http://en.wikipedia.org/wiki/Database_index)
