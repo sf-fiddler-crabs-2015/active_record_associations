@@ -93,15 +93,31 @@ end
 @customer.orders << @order1
 
 # orders.delete(object, ...)
-orders.destroy(object, ...)
+# Removes one or more objects from the collection by setting their foreign keys to NULL.
+@customer.orders.delete(@order1)
+
+# orders.destroy(object, ...)
+# Removes one or more objects from the collection by running destroy on each object.
+@customer.orders.destroy(@order1)
+
+# Makes the collection contain only the supplied objects, by adding and deleting as appropriate.
 orders=(objects)
-order_ids
+@customer.orders = [@order1, @order2]
+
+# order_ids
+@order_ids = @customer.order_ids
+
 order_ids=(ids)
 orders.clear
 orders.empty?
 orders.size
 orders.find(...)
-orders.where(...)
+
+# orders.where(...)
+# Lazy loading 
+@open_orders = @customer.orders.where(open: true) # No query yet
+@open_order = @open_orders.first # Now the database will be queried
+
 orders.exists?(...)
 orders.build(attributes = {}, ...)
 orders.create(attributes = {})
@@ -110,13 +126,19 @@ orders.create!(attributes = {})
 
 ### has_many :through
 
-### has_one :through
-
 ### has_and_belongs_to_many
 
+- The `has_and_belongs_to_many` association creates a many-to-many relationship with another model. 
+- This associates two classes via an intermediate join table that includes foreign keys referring to each of the classes.
+
+
 ### Choosing between many-to-many relationships (habtm vs. has_may :through)
+- The rule of thumb is that if you need the join table to be an independent entity, use `has_many :through`
+- This affords you validations, callbacks, and attributes on the join model
+- It also affords you some good, thoughtful naming on the join table
+- You will almost always end up needing a first-order model, so we recommend going with `has_many :through` unless you have a reason not to
 
 ### Resources
 
-- Rails Guide to AR associations http://guides.rubyonrails.org/association_basics.html
-- http://api.rubyonrails.org/classes/ActiveRecord/Associations/ClassMethods.html
+- [Rails Guide to Association Basics](Rails Guide to AR associations http://guides.rubyonrails.org/association_basics.html)
+- [Active Record API](http://api.rubyonrails.org/classes/ActiveRecord/Associations/ClassMethods.html)
