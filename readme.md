@@ -245,6 +245,6 @@ end
 
 - [Rails Guide to Association Basics](http://guides.rubyonrails.org/association_basics.html)
 - [Active Record API](http://api.rubyonrails.org/classes/ActiveRecord/Associations/ClassMethods.html)
-- [Active Record Migrations (has some Rails specific stuff](http://guides.rubyonrails.org/active_record_migrations.html)
+- [Active Record Migrations (has some Rails specific stuff)](http://guides.rubyonrails.org/active_record_migrations.html)
 - [More on Active Record queries and the ActiveRecord::Relation object](http://www.theodinproject.com/ruby-on-rails/active-record-queries)
 - [More on Indexing]()
